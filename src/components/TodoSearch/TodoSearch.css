@@ -1,0 +1,7 @@
+.TodoSearch {
+  block-size: 2rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+}

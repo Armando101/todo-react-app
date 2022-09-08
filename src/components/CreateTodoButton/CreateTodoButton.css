@@ -1,0 +1,17 @@
+.CreateTodoButton {
+  padding:1rem;
+  background-color: var(--secondary);
+  color: var(--white);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  inline-size: fit-content;
+  font-weight: 500;
+  will-change: transform, background;
+  transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
+}
+
+.CreateTodoButton:active {
+  transform: scale(0.9);
+}

@@ -1,0 +1,8 @@
+.TodoList {
+  padding: 0;
+  list-style: none;
+}
+
+.TodoList > li {
+  margin-bottom: 1rem;
+}

@@ -1,23 +1,20 @@
-import { CreateTodoButton } from "./components/CreateTodoButton";
-import { TodoCounter } from "./components/TodoCounter";
-import { TodoItem } from "./components/TodoItem";
-import { TodoList } from "./components/TodoList";
-import { TodoSearch } from "./components/TodoSearch";
+import { ContainerCreateTodo } from "./components/ContainerCreateTodo/ContainerCreateTodo";
+import { TodoCounter } from "./components/TodoCounter/TodoCounter";
+import { TodoItem } from "./components/TodoItem/TodoItem";
+import { TodoList } from "./components/TodoList/TodoList";
 import { todos } from "./mocks/todo";
 
 function App() {
   return (
     <>
       <TodoCounter />
-      <TodoSearch />
+      <ContainerCreateTodo />
 
       <TodoList>
         {todos.map((item, index) => (
           <TodoItem key={index} text={item.text} />
         ))}
       </TodoList>
-
-      <CreateTodoButton />
     </>
   );
 }
