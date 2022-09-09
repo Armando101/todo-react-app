@@ -12,7 +12,7 @@ function App() {
 
       <TodoList>
         {todos.map((item, index) => (
-          <TodoItem key={index} text={item.text} />
+          <TodoItem key={index} text={item.text} completed={item.completed} />
         ))}
       </TodoList>
     </>
