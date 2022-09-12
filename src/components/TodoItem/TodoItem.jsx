@@ -1,11 +1,7 @@
 import React from "react";
 import "./TodoItem.css";
 
-export const TodoItem = ({ text, completed }) => {
-  const onComplete = () => {
-    alert(`Task completed ${text}`);
-  };
-
+export const TodoItem = ({ text, completed, onComplete }) => {
   const onDelete = () => {
     alert(`Task deleted ${text}`);
   };
