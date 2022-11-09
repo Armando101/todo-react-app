@@ -13,3 +13,16 @@ export const filterTaskByName = (list, name) => {
     task.text.toLowerCase().includes(name.toLowerCase())
   );
 };
+
+/**
+ *
+ * @param {number} id task id
+ * @param {Task[]} todos List of task or todos
+ * @returns {[number, Task[]]}
+ */
+
+export const getIndex = (id, todos) => {
+  const todoIndex = todos.findIndex((todo) => todo.id === id);
+  const newTodos = [...todos];
+  return [todoIndex, newTodos];
+};

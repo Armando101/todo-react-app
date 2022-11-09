@@ -6,6 +6,7 @@ import { TodoList } from "./components/TodoList/TodoList";
 import { TodoSearch } from "./components/TodoSearch/TodoSearch";
 import { defaultTodos } from "./mocks/todo";
 import "./App.css";
+import { getIndex } from "./helpers/functions";
 
 function App() {
   const [todos, setTodos] = useState(defaultTodos);
@@ -16,10 +17,17 @@ function App() {
   const totalTodos = todos.length;
 
   const completeTodo = (id) => {
-    const todoIndex = todos.findIndex((todo) => todo.id === id);
-    const newTodos = [...todos];
-    newTodos[todoIndex].completed = true;
+    const [todoIndex, newTodos] = getIndex(id, todos);
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
     setTodos(newTodos);
+  };
+
+  const deleteTodo = (id) => {
+    const [todoIndex, newTodos] = getIndex(id, todos);
+    newTodos.splice(todoIndex, 1);
+    console.log(newTodos);
+    setTodos(newTodos);
+    setFilteredTask(newTodos);
   };
 
   return (
@@ -37,6 +45,7 @@ function App() {
         {filteredTask.map((item, index) => (
           <TodoItem
             onComplete={completeTodo.bind(this, item.id)}
+            onDelete={deleteTodo.bind(this, item.id)}
             key={index}
             text={item.text}
             completed={item.completed}

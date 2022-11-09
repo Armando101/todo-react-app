@@ -1,15 +1,15 @@
 import React from "react";
 import "./TodoItem.css";
 
-export const TodoItem = ({ text, completed, onComplete }) => {
-  const onDelete = () => {
-    alert(`Task deleted ${text}`);
-  };
-
+export const TodoItem = ({ text, completed, onComplete, onDelete }) => {
   return (
     <li className="TodoItem">
       <div className="TodoItem-info">
-        <input type="checkbox" onClick={onComplete} />
+        <input
+          type="checkbox"
+          defaultChecked={completed}
+          onClick={onComplete}
+        />
         <p className={completed ? "completed" : ""}> {text}</p>
       </div>
       <span
