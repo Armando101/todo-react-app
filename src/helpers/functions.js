@@ -26,3 +26,15 @@ export const getIndex = (id, todos) => {
   const newTodos = [...todos];
   return [todoIndex, newTodos];
 };
+
+export const completeTodo = (id, todos) => {
+  const [todoIndex, newTodos] = getIndex(id, todos);
+  newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+  return newTodos;
+};
+
+export const deleteTodo = (id, todos) => {
+  const [todoIndex, newTodos] = getIndex(id, todos);
+  newTodos.splice(todoIndex, 1);
+  return newTodos;
+};
