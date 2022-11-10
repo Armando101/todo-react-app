@@ -1,5 +1,4 @@
 import React from "react";
-import { completeTodo, deleteTodo, saveTodos } from "../../helpers/functions";
 import { TodoCounter } from "../TodoCounter/TodoCounter";
 import { TodoItem } from "../TodoItem/TodoItem";
 import { TodoList } from "../TodoList/TodoList";
@@ -12,8 +11,8 @@ export const AppUI = ({
   setSearchValue,
   filteredTask,
   setFilteredTask,
-  setTodos,
-
+  completeTodo,
+  deleteTodo,
   totalTodos,
   completedTodos,
 }) => {
@@ -31,15 +30,8 @@ export const AppUI = ({
       <TodoList>
         {filteredTask.map((item, index) => (
           <TodoItem
-            onComplete={() => {
-              const newTodos = completeTodo(item.id, todos);
-              saveTodos(newTodos, setTodos);
-            }}
-            onDelete={() => {
-              const newTodos = deleteTodo(item.id, todos);
-              saveTodos(newTodos, setTodos);
-              setFilteredTask(newTodos);
-            }}
+            onComplete={completeTodo.bind(this, item.id)}
+            onDelete={deleteTodo.bind(this, item.id)}
             key={index}
             text={item.text}
             completed={item.completed}

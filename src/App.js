@@ -1,23 +1,29 @@
 import { useState } from "react";
-import { defaultTodos } from "./mocks/todo";
 import { AppUI } from "./components/App/AppUI";
 import { TODOS_STORAGE } from "./constants";
+import { getIndex } from "./helpers/functions";
+import { useLocalStorage } from "./hooks/data";
 
 function App() {
-  const localStorageTodos = localStorage.getItem(TODOS_STORAGE);
-  let parsedTodos = defaultTodos;
-  if (!localStorageTodos) {
-    localStorage.setItem(TODOS_STORAGE, JSON.stringify(defaultTodos));
-  } else {
-    parsedTodos = JSON.parse(localStorageTodos);
-  }
-
-  const [todos, setTodos] = useState(parsedTodos);
+  const [todos, saveTodos] = useLocalStorage(TODOS_STORAGE, []);
   const [searchValue, setSearchValue] = useState("");
   const [filteredTask, setFilteredTask] = useState(todos);
 
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
+
+  const completeTodo = (id) => {
+    const [todoIndex, newTodos] = getIndex(id, todos);
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+    saveTodos(newTodos);
+  };
+
+  const deleteTodo = (id) => {
+    const [todoIndex, newTodos] = getIndex(id, todos);
+    newTodos.splice(todoIndex, 1);
+    saveTodos(newTodos);
+    setFilteredTask(newTodos);
+  };
 
   return (
     <AppUI
@@ -26,9 +32,10 @@ function App() {
       setSearchValue={setSearchValue}
       filteredTask={filteredTask}
       setFilteredTask={setFilteredTask}
-      setTodos={setTodos}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
     />
   );
 }
