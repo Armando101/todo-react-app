@@ -1,3 +1,4 @@
+import { TODOS_STORAGE } from "../constants";
 /**
  * A task
  * @typedef {{text: string, completed: boolean}} Task
@@ -37,4 +38,9 @@ export const deleteTodo = (id, todos) => {
   const [todoIndex, newTodos] = getIndex(id, todos);
   newTodos.splice(todoIndex, 1);
   return newTodos;
+};
+
+export const saveTodos = (newTodos, setTodos) => {
+  setTodos(newTodos);
+  localStorage.setItem(TODOS_STORAGE, JSON.stringify(newTodos));
 };

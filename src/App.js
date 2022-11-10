@@ -1,9 +1,18 @@
 import { useState } from "react";
 import { defaultTodos } from "./mocks/todo";
 import { AppUI } from "./components/App/AppUI";
+import { TODOS_STORAGE } from "./constants";
 
 function App() {
-  const [todos, setTodos] = useState(defaultTodos);
+  const localStorageTodos = localStorage.getItem(TODOS_STORAGE);
+  let parsedTodos = defaultTodos;
+  if (!localStorageTodos) {
+    localStorage.setItem(TODOS_STORAGE, JSON.stringify(defaultTodos));
+  } else {
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+
+  const [todos, setTodos] = useState(parsedTodos);
   const [searchValue, setSearchValue] = useState("");
   const [filteredTask, setFilteredTask] = useState(todos);
 

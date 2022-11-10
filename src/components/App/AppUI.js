@@ -1,5 +1,5 @@
 import React from "react";
-import { completeTodo, deleteTodo } from "../../helpers/functions";
+import { completeTodo, deleteTodo, saveTodos } from "../../helpers/functions";
 import { TodoCounter } from "../TodoCounter/TodoCounter";
 import { TodoItem } from "../TodoItem/TodoItem";
 import { TodoList } from "../TodoList/TodoList";
@@ -33,11 +33,11 @@ export const AppUI = ({
           <TodoItem
             onComplete={() => {
               const newTodos = completeTodo(item.id, todos);
-              setTodos(newTodos);
+              saveTodos(newTodos, setTodos);
             }}
             onDelete={() => {
               const newTodos = deleteTodo(item.id, todos);
-              setTodos(newTodos);
+              saveTodos(newTodos, setTodos);
               setFilteredTask(newTodos);
             }}
             key={index}
