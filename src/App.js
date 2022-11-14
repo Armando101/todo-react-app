@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AppUI } from "./components/App/AppUI";
 import { TODOS_STORAGE } from "./constants";
 import { getIndex } from "./helpers/functions";
 import { useLocalStorage } from "./hooks/data";
+import { defaultTodos } from "./mocks/todo";
 
 function App() {
-  const [todos, saveTodos] = useLocalStorage(TODOS_STORAGE, []);
+  const {
+    item: todos,
+    savedItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage(TODOS_STORAGE, defaultTodos);
   const [searchValue, setSearchValue] = useState("");
   const [filteredTask, setFilteredTask] = useState(todos);
 
@@ -25,8 +31,16 @@ function App() {
     setFilteredTask(newTodos);
   };
 
+  useEffect(() => {
+    console.log("RENDER");
+
+    return () => {};
+  }, [totalTodos]);
+
   return (
     <AppUI
+      loading={loading}
+      error={error}
       todos={todos}
       searchValue={searchValue}
       setSearchValue={setSearchValue}

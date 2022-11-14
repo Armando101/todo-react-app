@@ -6,6 +6,8 @@ import { TodoSearch } from "../TodoSearch/TodoSearch";
 import "./App.css";
 
 export const AppUI = ({
+  loading,
+  error,
   todos,
   searchValue,
   setSearchValue,
@@ -27,17 +29,22 @@ export const AppUI = ({
       />
       {/* <CreateTodoButton className="CreateTodoButton" /> */}
 
-      <TodoList>
-        {filteredTask.map((item, index) => (
-          <TodoItem
-            onComplete={completeTodo.bind(this, item.id)}
-            onDelete={deleteTodo.bind(this, item.id)}
-            key={index}
-            text={item.text}
-            completed={item.completed}
-          />
-        ))}
-      </TodoList>
+      {loading && <p>Cargando...</p>}
+      {error && <p>Ha habido un error :/</p>}
+
+      {!loading && !error && (
+        <TodoList>
+          {filteredTask.map((item, index) => (
+            <TodoItem
+              onComplete={completeTodo.bind(this, item.id)}
+              onDelete={deleteTodo.bind(this, item.id)}
+              key={index}
+              text={item.text}
+              completed={item.completed}
+            />
+          ))}
+        </TodoList>
+      )}
     </>
   );
 };
