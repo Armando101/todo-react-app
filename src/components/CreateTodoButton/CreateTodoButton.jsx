@@ -1,16 +1,13 @@
 import React from "react";
 import "./CreateTodoButton.css";
 
-export const CreateTodoButton = () => {
-  const createTask = (msg) => {
-    alert(msg);
+export const CreateTodoButton = ({ setOpenModal }) => {
+  const createTask = () => {
+    setOpenModal(true);
   };
 
   return (
-    <button
-      className="CreateTodoButton"
-      onClick={createTask.bind(this, "Hello task")}
-    >
+    <button className="CreateTodoButton" onClick={createTask.bind(this)}>
       Create task
     </button>
   );

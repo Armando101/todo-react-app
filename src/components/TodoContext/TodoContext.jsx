@@ -15,6 +15,7 @@ function TodoProvider({ children }) {
     error,
   } = useLocalStorage(TODOS_STORAGE, defaultTodos);
   const [searchValue, setSearchValue] = useState();
+  const [openModal, setOpenModal] = useState(false);
 
   const [filteredTask, setFilteredTask] = useState(todos);
   useEffect(() => {
@@ -51,6 +52,8 @@ function TodoProvider({ children }) {
         totalTodos,
         completeTodo,
         deleteTodo,
+        openModal,
+        setOpenModal,
       }}
     >
       {children}

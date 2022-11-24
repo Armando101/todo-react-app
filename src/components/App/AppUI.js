@@ -5,10 +5,13 @@ import { TodoCounter } from "../TodoCounter/TodoCounter";
 import { TodoItem } from "../TodoItem/TodoItem";
 import { TodoList } from "../TodoList/TodoList";
 import { TodoSearch } from "../TodoSearch/TodoSearch";
+import { Modal } from "../Modal/Modal.jsx";
 import "./App.css";
+import { CreateTodoButton } from "../CreateTodoButton/CreateTodoButton";
 
 export const AppUI = () => {
-  const { loading, error, filteredTask } = useContext(TodoContext);
+  const { loading, error, filteredTask, openModal, setOpenModal } =
+    useContext(TodoContext);
 
   return (
     <>
@@ -23,6 +26,12 @@ export const AppUI = () => {
             return <TodoItem key={index} id={item.id} />;
           })}
       </TodoList>
+      {openModal && (
+        <Modal>
+          <p>MY PORTAL</p>
+        </Modal>
+      )}
+      <CreateTodoButton setOpenModal={setOpenModal} />
     </>
   );
 };
