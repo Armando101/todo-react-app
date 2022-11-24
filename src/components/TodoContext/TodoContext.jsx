@@ -38,6 +38,15 @@ function TodoProvider({ children }) {
     setFilteredTask(newTodos);
   };
 
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      completed: false,
+      text,
+    });
+    saveTodos(newTodos);
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -52,6 +61,7 @@ function TodoProvider({ children }) {
         totalTodos,
         completeTodo,
         deleteTodo,
+        addTodo,
         openModal,
         setOpenModal,
       }}

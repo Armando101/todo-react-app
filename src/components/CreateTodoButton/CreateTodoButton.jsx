@@ -1,9 +1,9 @@
 import React from "react";
 import "./CreateTodoButton.css";
 
-export const CreateTodoButton = ({ text, callback }) => {
+export const CreateTodoButton = ({ text, callback, type = "button" }) => {
   return (
-    <button className="CreateTodoButton" onClick={callback}>
+    <button type={type} className="CreateTodoButton" onClick={callback}>
       {text}
     </button>
   );

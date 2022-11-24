@@ -1,0 +1,4 @@
+.bodyForm {
+  display: flex;
+  flex-direction: column;
+}
