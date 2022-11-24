@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { CreateTodoButton } from "../CreateTodoButton/CreateTodoButton";
 import { TodoContext } from "../TodoContext/TodoContext";
@@ -6,6 +7,11 @@ import "./TodoForm.css";
 
 export const TodoForm = () => {
   const { addTodo, setOpenModal } = useContext(TodoContext);
+  const [formValue, setFormValue] = useState("");
+
+  const onChange = ({ target }) => {
+    setFormValue(target.value);
+  };
 
   const onCancel = () => {
     setOpenModal(false);
@@ -13,8 +19,8 @@ export const TodoForm = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const text = event.target[0].value;
-    addTodo(text);
+
+    addTodo(formValue);
     setOpenModal(false);
   };
 
@@ -22,7 +28,12 @@ export const TodoForm = () => {
     <form onSubmit={onSubmit}>
       <div className="bodyForm">
         <label>Task</label>
-        <textarea placeholder="Cut onions" cols="30" rows="10"></textarea>
+        <textarea
+          onChange={onChange.bind(this)}
+          placeholder="Cut onions"
+          cols="30"
+          rows="10"
+        ></textarea>
       </div>
       <div>
         <CreateTodoButton

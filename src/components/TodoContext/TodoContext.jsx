@@ -43,7 +43,9 @@ function TodoProvider({ children }) {
     newTodos.push({
       completed: false,
       text,
+      id: Math.trunc(Math.random() * 1000000),
     });
+    console.log(newTodos);
     saveTodos(newTodos);
   };
 
