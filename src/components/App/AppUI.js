@@ -8,10 +8,15 @@ import { TodoSearch } from "../TodoSearch/TodoSearch";
 import { Modal } from "../Modal/Modal.jsx";
 import "./App.css";
 import { CreateTodoButton } from "../CreateTodoButton/CreateTodoButton";
+import { TodoForm } from "../TodoForm/TodoForm";
 
 export const AppUI = () => {
   const { loading, error, filteredTask, openModal, setOpenModal } =
     useContext(TodoContext);
+
+  const createTask = () => {
+    setOpenModal(true);
+  };
 
   return (
     <>
@@ -28,10 +33,14 @@ export const AppUI = () => {
       </TodoList>
       {openModal && (
         <Modal>
-          <p>MY PORTAL</p>
+          <TodoForm />
         </Modal>
       )}
-      <CreateTodoButton setOpenModal={setOpenModal} />
+      <CreateTodoButton
+        text={"Create task"}
+        callback={createTask}
+        setOpenModal={setOpenModal}
+      />
     </>
   );
 };
