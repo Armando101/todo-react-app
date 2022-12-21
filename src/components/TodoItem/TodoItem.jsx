@@ -1,26 +1,23 @@
-import React, { useContext } from "react";
-import { TodoContext } from "../TodoContext/TodoContext";
+import React from "react";
 import "./TodoItem.css";
 
-export const TodoItem = ({ id }) => {
-  const { todos, completeTodo, deleteTodo } = useContext(TodoContext);
-  const item = todos.find((item) => item.id === id);
+export const TodoItem = ({ myItem, completeTodo, deleteTodo }) => {
   return (
     <li className="TodoItem">
       <div className="TodoItem-info">
         <input
           type="checkbox"
-          defaultChecked={item.completed}
+          defaultChecked={myItem?.completed}
           onClick={() => {
-            completeTodo(item.id);
+            completeTodo(myItem.id);
           }}
         />
-        <p className={item.completed ? "completed" : ""}> {item.text}</p>
+        <p className={myItem?.completed ? "completed" : ""}> {myItem?.text}</p>
       </div>
       <span
         className="material-symbols-outlined TodoItem-delete"
         onClick={() => {
-          deleteTodo(item.id);
+          deleteTodo(myItem.id);
         }}
       >
         delete

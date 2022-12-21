@@ -9,10 +9,21 @@ import { Modal } from "../Modal/Modal.jsx";
 import "./App.css";
 import { CreateTodoButton } from "../CreateTodoButton/CreateTodoButton";
 import { TodoForm } from "../TodoForm/TodoForm";
+import { TodoHeader } from "../TodoHeader/TodoHeader";
 
 export const AppUI = () => {
-  const { loading, error, filteredTask, openModal, setOpenModal } =
-    useContext(TodoContext);
+  const {
+    loading,
+    error,
+    filteredTask,
+    openModal,
+    setOpenModal,
+    completedTodos,
+    totalTodos,
+    setSearchValue,
+    todos,
+    setFilteredTask,
+  } = useContext(TodoContext);
 
   const createTask = () => {
     setOpenModal(true);
@@ -20,8 +31,14 @@ export const AppUI = () => {
 
   return (
     <>
-      <TodoCounter />
-      <TodoSearch />
+      <TodoHeader>
+        <TodoCounter completedTodos={completedTodos} totalTodos={totalTodos} />
+        <TodoSearch
+          setSearchValue={setSearchValue}
+          todos={todos}
+          setFilteredTask={setFilteredTask}
+        />
+      </TodoHeader>
       <TodoList>
         {error && <p>Ha habido un error :/</p>}
         {loading && <p>Cargando...</p>}

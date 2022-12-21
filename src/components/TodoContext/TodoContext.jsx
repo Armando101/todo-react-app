@@ -1,19 +1,17 @@
 import { useEffect } from "react";
-import { createContext } from "react";
 import { useState } from "react";
 import { TODOS_STORAGE } from "../../constants";
 import { getIndex } from "../../helpers/functions";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { defaultTodos } from "../../mocks/todo";
 
-const TodoContext = createContext();
-function TodoProvider({ children }) {
+function TodoProvider() {
   const {
     item: todos,
     savedItem: saveTodos,
     loading,
     error,
-  } = useLocalStorage(TODOS_STORAGE, defaultTodos);
+  } = useLocalStorage(TODOS_STORAGE, [...defaultTodos]);
   const [searchValue, setSearchValue] = useState();
   const [openModal, setOpenModal] = useState(false);
 
@@ -45,32 +43,25 @@ function TodoProvider({ children }) {
       text,
       id: Math.trunc(Math.random() * 1000000),
     });
-    console.log(newTodos);
     saveTodos(newTodos);
   };
 
-  return (
-    <TodoContext.Provider
-      value={{
-        loading,
-        error,
-        todos,
-        searchValue,
-        setSearchValue,
-        filteredTask,
-        setFilteredTask,
-        completedTodos,
-        totalTodos,
-        completeTodo,
-        deleteTodo,
-        addTodo,
-        openModal,
-        setOpenModal,
-      }}
-    >
-      {children}
-    </TodoContext.Provider>
-  );
+  return {
+    loading,
+    error,
+    todos,
+    searchValue,
+    setSearchValue,
+    filteredTask,
+    setFilteredTask,
+    completedTodos,
+    totalTodos,
+    completeTodo,
+    deleteTodo,
+    addTodo,
+    openModal,
+    setOpenModal,
+  };
 }
 
-export { TodoProvider, TodoContext };
+export { TodoProvider };

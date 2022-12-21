@@ -1,29 +1,32 @@
+import { useMemo } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
 export function useLocalStorage(itemName, initialValue) {
-  const [item, setItem] = useState(initialValue);
+  const [item, setItem] = useState([...initialValue]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      try {
-        const localStorageItem = localStorage.getItem(itemName);
-        let parsedItem = initialValue;
+  // eslint-disable-next-line
+  const defaultValue = useMemo(() => initialValue, []);
 
-        if (!localStorageItem) {
-          localStorage.setItem(itemName, JSON.stringify(initialValue));
-        } else {
-          parsedItem = JSON.parse(localStorageItem);
-        }
-        setItem(parsedItem);
-        setLoading(false);
-      } catch {
-        setError(true);
+  useEffect(() => {
+    try {
+      const localStorageItem = localStorage.getItem(itemName);
+      let parsedItem = [];
+
+      if (!localStorageItem) {
+        localStorage.setItem(itemName, JSON.stringify(defaultValue));
+      } else {
+        parsedItem = JSON.parse(localStorageItem);
       }
-    }, 3000);
-  }, [initialValue, itemName]);
+      setItem(parsedItem);
+      console.log({ parsedItem });
+      setLoading(false);
+    } catch {
+      setError(true);
+    }
+  }, [itemName, defaultValue]);
 
   const savedItem = (newItem) => {
     try {
