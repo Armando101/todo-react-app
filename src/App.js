@@ -12,13 +12,14 @@ function App() {
   const {
     completedTodos,
     totalTodos,
-    setSearchValue,
     todos,
-    setFilteredTask,
     error,
     loading,
     filteredTask,
     openModal,
+    searchValue,
+    setSearchValue,
+    setFilteredTask,
     setOpenModal,
     addTodo,
     deleteTodo,
@@ -39,22 +40,39 @@ function App() {
           setFilteredTask={setFilteredTask}
         />
       </TodoHeader>
-      <TodoList>
-        {error && <p>Ha habido un error :/</p>}
-        {loading && <p>Cargando...</p>}
-        {!loading &&
-          !error &&
-          filteredTask.map((item, index) => {
-            return (
-              <TodoItem
-                key={index}
-                todos={todos}
-                myItem={item}
-                completeTodo={completeTodo}
-                deleteTodo={deleteTodo}
-              />
-            );
-          })}
+      <TodoList
+        error={error}
+        loading={loading}
+        filteredTask={filteredTask}
+        totalTodos={totalTodos}
+        searchValue={searchValue}
+        onEmptySearch={(search) => <p>There is no results for {search}</p>}
+        onEmptyResult={() => <p>Create your first to do :D</p>}
+        onError={() => <p>Ha habido un error</p>}
+        onLoading={() => <p>Cargando...</p>}
+        // onRender={(item, index) => {
+        //   return (
+        //     <TodoItem
+        //       key={index}
+        //       todos={todos}
+        //       myItem={item}
+        //       completeTodo={completeTodo}
+        //       deleteTodo={deleteTodo}
+        //     />
+        //   );
+        // }}
+      >
+        {(item, index) => {
+          return (
+            <TodoItem
+              key={index}
+              todos={todos}
+              myItem={item}
+              completeTodo={completeTodo}
+              deleteTodo={deleteTodo}
+            />
+          );
+        }}
       </TodoList>
       {openModal && (
         <Modal setOpenModal={setOpenModal}>

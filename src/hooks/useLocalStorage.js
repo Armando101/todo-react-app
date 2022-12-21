@@ -21,7 +21,6 @@ export function useLocalStorage(itemName, initialValue) {
         parsedItem = JSON.parse(localStorageItem);
       }
       setItem(parsedItem);
-      console.log({ parsedItem });
       setLoading(false);
     } catch {
       setError(true);
