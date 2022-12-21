@@ -1,6 +1,6 @@
 import { CreateTodoButton } from "./components/CreateTodoButton/CreateTodoButton";
 import { Modal } from "./components/Modal/Modal";
-import { TodoProvider } from "./components/TodoContext/TodoContext";
+import { useTodo } from "./hooks/useTodo";
 import { TodoCounter } from "./components/TodoCounter/TodoCounter";
 import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoHeader } from "./components/TodoHeader/TodoHeader";
@@ -23,7 +23,7 @@ function App() {
     addTodo,
     deleteTodo,
     completeTodo,
-  } = TodoProvider();
+  } = useTodo();
 
   const createTask = () => {
     setOpenModal(true);

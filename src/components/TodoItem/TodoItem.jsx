@@ -2,6 +2,7 @@ import React from "react";
 import "./TodoItem.css";
 
 export const TodoItem = ({ myItem, completeTodo, deleteTodo }) => {
+  console.log({ myItem });
   return (
     <li className="TodoItem">
       <div className="TodoItem-info">

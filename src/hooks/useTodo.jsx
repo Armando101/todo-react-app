@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { TODOS_STORAGE } from "../../constants";
-import { getIndex } from "../../helpers/functions";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { defaultTodos } from "../../mocks/todo";
+import { TODOS_STORAGE } from "../constants";
+import { getIndex } from "../helpers/functions";
+import { useLocalStorage } from "./useLocalStorage";
 
-function TodoProvider() {
+function useTodo() {
   const {
     item: todos,
     savedItem: saveTodos,
     loading,
     error,
-  } = useLocalStorage(TODOS_STORAGE, [...defaultTodos]);
+  } = useLocalStorage(TODOS_STORAGE, []);
   const [searchValue, setSearchValue] = useState();
   const [openModal, setOpenModal] = useState(false);
 
@@ -64,4 +63,4 @@ function TodoProvider() {
   };
 }
 
-export { TodoProvider };
+export { useTodo };
