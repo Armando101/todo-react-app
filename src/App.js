@@ -32,17 +32,12 @@ function App() {
 
   return (
     <>
-      <TodoHeader>
-        <TodoCounter
-          completedTodos={completedTodos}
-          totalTodos={totalTodos}
-          loading={loading}
-        />
+      <TodoHeader loading={loading}>
+        <TodoCounter completedTodos={completedTodos} totalTodos={totalTodos} />
         <TodoSearch
           setSearchValue={setSearchValue}
           todos={todos}
           setFilteredTask={setFilteredTask}
-          loading={loading}
         />
       </TodoHeader>
       <TodoList
