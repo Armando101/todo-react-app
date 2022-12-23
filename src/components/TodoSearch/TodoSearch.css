@@ -7,3 +7,8 @@
   inline-size: 100%;
   box-sizing: border-box;
 }
+
+input:disabled {
+  opacity: 90%;
+  cursor: not-allowed;
+}

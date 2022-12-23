@@ -2,7 +2,12 @@ import React from "react";
 import { filterTaskByName } from "../../helpers/functions";
 import "./TodoSearch.css";
 
-export const TodoSearch = ({ setSearchValue, todos, setFilteredTask }) => {
+export const TodoSearch = ({
+  setSearchValue,
+  todos,
+  setFilteredTask,
+  loading,
+}) => {
   const onSearchValueChange = (event) => {
     const { value } = event.target;
     setSearchValue(value);
@@ -20,6 +25,7 @@ export const TodoSearch = ({ setSearchValue, todos, setFilteredTask }) => {
         type="text"
         placeholder="Buy apples"
         onChange={onSearchValueChange}
+        disabled={loading}
       />
     </>
   );

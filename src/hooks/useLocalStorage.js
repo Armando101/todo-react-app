@@ -12,16 +12,18 @@ export function useLocalStorage(itemName, initialValue) {
 
   useEffect(() => {
     try {
-      const localStorageItem = localStorage.getItem(itemName);
-      let parsedItem = [];
+      setTimeout(() => {
+        const localStorageItem = localStorage.getItem(itemName);
+        let parsedItem = [];
 
-      if (!localStorageItem) {
-        localStorage.setItem(itemName, JSON.stringify(defaultValue));
-      } else {
-        parsedItem = JSON.parse(localStorageItem);
-      }
-      setItem(parsedItem);
-      setLoading(false);
+        if (!localStorageItem) {
+          localStorage.setItem(itemName, JSON.stringify(defaultValue));
+        } else {
+          parsedItem = JSON.parse(localStorageItem);
+        }
+        setItem(parsedItem);
+        setLoading(false);
+      }, 1500);
     } catch {
       setError(true);
     }

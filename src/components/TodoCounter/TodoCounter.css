@@ -2,3 +2,7 @@
   font-size: 2rem;
   text-align: center;
 }
+
+.loading {
+  opacity: 25%;
+}
