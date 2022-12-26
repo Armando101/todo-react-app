@@ -7,6 +7,7 @@ import { TodoHeader } from "./components/TodoHeader/TodoHeader";
 import { TodoItem } from "./components/TodoItem/TodoItem";
 import { TodoList } from "./components/TodoList/TodoList";
 import { TodoSearch } from "./components/TodoSearch/TodoSearch";
+import { ChangeAlertWithStorageListener } from "./components/ChangeAlert/changeAlert";
 
 function App() {
   const {
@@ -24,6 +25,7 @@ function App() {
     addTodo,
     deleteTodo,
     completeTodo,
+    sincronize,
   } = useTodo();
 
   const createTask = () => {
@@ -84,6 +86,9 @@ function App() {
         callback={createTask}
         setOpenModal={setOpenModal}
       />
+      <ChangeAlertWithStorageListener
+        sincronize={sincronize}
+      ></ChangeAlertWithStorageListener>
     </>
   );
 }

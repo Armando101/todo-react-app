@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export function useLocalStorage(itemName, initialValue) {
   const [item, setItem] = useState([...initialValue]);
+  const [sincronizedItem, setSincronizedItem] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -23,11 +24,13 @@ export function useLocalStorage(itemName, initialValue) {
         }
         setItem(parsedItem);
         setLoading(false);
+        setSincronizedItem(true);
       }, 1500);
     } catch {
       setError(true);
     }
-  }, [itemName, defaultValue]);
+    // eslint-disable-next-line
+  }, [defaultValue, sincronizedItem]);
 
   const savedItem = (newItem) => {
     try {
@@ -38,5 +41,10 @@ export function useLocalStorage(itemName, initialValue) {
     }
   };
 
-  return { item, savedItem, loading, error };
+  const sincronize = () => {
+    setLoading(true);
+    setSincronizedItem(false);
+  };
+
+  return { item, savedItem, loading, error, sincronize };
 }
