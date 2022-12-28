@@ -4,7 +4,7 @@ import "./Modal.css";
 export function Modal({ children, setOpenModal }) {
   return ReactDOM.createPortal(
     <div className="modal">
-      <span onClick={() => setOpenModal(false)}>X</span>
+      {setOpenModal && <span onClick={() => setOpenModal(false)}>X</span>}
       {children}
     </div>,
     document.getElementById("modal")

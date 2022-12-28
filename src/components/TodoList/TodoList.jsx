@@ -14,10 +14,14 @@ export const TodoList = ({
   onEmptyResult,
   onEmptySearch,
 }) => {
+  if (loading) {
+    onLoading();
+    return <></>;
+  }
+
   return (
     <section>
       {error && onError()}
-      {loading && onLoading()}
       {!error && !loading && totalTodos === 0 && onEmptyResult()}
       {!error &&
         !loading &&

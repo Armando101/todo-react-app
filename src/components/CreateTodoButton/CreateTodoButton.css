@@ -1,6 +1,5 @@
 .CreateTodoButton {
   padding:1rem;
-  background-color: var(--secondary);
   color: var(--white);
   cursor: pointer;
   border: none;
@@ -14,4 +13,12 @@
 
 .CreateTodoButton:active {
   transform: scale(0.9);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.bg-contrast2 {
+  background-color: var(--contrast2);
 }

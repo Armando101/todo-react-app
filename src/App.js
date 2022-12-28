@@ -64,17 +64,18 @@ function App() {
         //   );
         // }}
       >
-        {(item, index) => {
-          return (
-            <TodoItem
-              key={index}
-              todos={todos}
-              myItem={item}
-              completeTodo={completeTodo}
-              deleteTodo={deleteTodo}
-            />
-          );
-        }}
+        {!loading &&
+          ((item, index) => {
+            return (
+              <TodoItem
+                key={index}
+                todos={todos}
+                myItem={item}
+                completeTodo={completeTodo}
+                deleteTodo={deleteTodo}
+              />
+            );
+          })}
       </TodoList>
       {openModal && (
         <Modal setOpenModal={setOpenModal}>
