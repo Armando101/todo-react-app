@@ -7,7 +7,7 @@ import { TodoHeader } from "./components/TodoHeader/TodoHeader";
 import { TodoItem } from "./components/TodoItem/TodoItem";
 import { TodoList } from "./components/TodoList/TodoList";
 import { TodoSearch } from "./components/TodoSearch/TodoSearch";
-import { ChangeAlertWithStorageListener } from "./components/ChangeAlert/changeAlert";
+import { ChangeAlert } from "./components/ChangeAlert/ChangeAlert";
 
 function App() {
   const {
@@ -87,9 +87,7 @@ function App() {
         callback={createTask}
         setOpenModal={setOpenModal}
       />
-      <ChangeAlertWithStorageListener
-        sincronize={sincronize}
-      ></ChangeAlertWithStorageListener>
+      <ChangeAlert sincronize={sincronize}></ChangeAlert>
     </>
   );
 }

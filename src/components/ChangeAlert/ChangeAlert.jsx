@@ -1,10 +1,11 @@
 import React from "react";
 import { CreateTodoButton } from "../CreateTodoButton/CreateTodoButton";
 import { Modal } from "../Modal/Modal";
-import { withStorageListener } from "./withStorageListener";
+import { useStorageListener } from "../../hooks/useStorageListener";
 
-const changeAlert = ({ toggleShow, show }) => {
-  if (show) {
+export const ChangeAlert = ({ sincronize }) => {
+  const [storageChange, toggleShow] = useStorageListener(sincronize);
+  if (storageChange) {
     return (
       <>
         <Modal>
@@ -22,7 +23,3 @@ const changeAlert = ({ toggleShow, show }) => {
   }
   return null;
 };
-
-const ChangeAlertWithStorageListener = withStorageListener(changeAlert);
-
-export { ChangeAlertWithStorageListener };
